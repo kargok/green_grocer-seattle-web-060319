@@ -55,11 +55,8 @@ describe "Grocer" do
         @avocado = find_item('AVOCADO')
         @avocado_coupon = coupons.find { |coupon| coupon[:item] == "AVOCADO" }
         @cart = [@avocado, @avocado]
-        binding.pry
         @consolidated_cart = consolidate_cart(@cart)
-        binding.pry
         @avocado_result = apply_coupons(@consolidated_cart, [@avocado_coupon])
-        binding.pry
       end
 
       it "adds a new key, value pair to the cart hash called 'ITEM NAME W/COUPON'" do
@@ -152,6 +149,7 @@ describe "Grocer" do
         expect(two_coupon_result["AVOCADO"][:count]).to eq(1)
         expect(two_coupon_result["AVOCADO W/COUPON"][:price]).to eq(5.00)
         expect(two_coupon_result["AVOCADO"][:price]).to eq(3.00)
+        # binding.pry
         expect(two_coupon_result["AVOCADO W/COUPON"][:count]).to eq(2)
       end
     end
@@ -164,6 +162,7 @@ describe "Grocer" do
 
       result = apply_clearance(consolidated_cart)
       expect(result["TEMPEH"][:price]).to eq(2.40)
+      # binding.pry
     end
 
     it "does not discount the price for items not on clearance" do
